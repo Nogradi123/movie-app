@@ -2,8 +2,9 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import EditMovie from './EditMovie';
 
-export default function MovieDetails() {
+export default function MovieDetails({movies, fetchMovies}) {
     const {id} = useParams();
 
     const [theMovie, setTheMovie] = useState({});
@@ -35,7 +36,8 @@ export default function MovieDetails() {
                     )
                 })}
            </div>
-
+            
+           {<EditMovie movies={movies} fetchMovies={fetchMovies} />}
 
         
         </div>

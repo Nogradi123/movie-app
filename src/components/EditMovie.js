@@ -1,42 +1,37 @@
 import React from 'react';
-import { useState } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateMovie() {
+export default function EditMovie({movies, fetchMovies}) {
     const navigate = useNavigate();
+    const {id} = useParams();
 
-    const [formState, setFormState] = useState({
-        title: "",
-        genre: "",
-        plot: "",
-        cast: ""
+    const [formState, setFormState] = useState(movies);
 
-    })
-
-    const updateInput = (e, thingToUpdate)=>{
-        setFormState({...formState, [thingToUpdate]: e.target.value})
-    }
+    const updateInput = (e, thingToUpdate) => {
+        setFormState({...formState, [thingToUpdate]: e.target.value});
+    };
 
     const submitForm = () =>{
-        axios.post("http://localhost:4200/movies/create", {
+        axios.post("http://localhost:4200/movies/edit/"+id, {
             title: formState.title,
             genre: formState.genre,
             plot: formState.plot,
-            cast: formState.cast,
         
         })
         .then((response)=>{
-            console.log(response);
-            navigate("/movies");
+            fetchMovies();
+            navigate('/movies');
         })
         .catch((err)=>{
             console.log(err);
         })
     }
 
-    return(
-        <div>
+  return (
+    <div>
             <div>
                 Title:
                 <input type="text" value={formState.title} onChange={(e)=>{updateInput(e,"title")}} />
@@ -49,12 +44,7 @@ export default function CreateMovie() {
                 Plot:
                 <input type="text" value={formState.plot} onChange={(e)=>{updateInput(e,"plot")}} />
             </div>
-            <div>
-                Cast:
-                <input type="text" value={formState.cast} onChange={(e)=>{updateInput(e,"cast")}} />
-            </div>
-    
             <button onClick={submitForm}>submit</button>
         </div>
-    )
+  )
 }
