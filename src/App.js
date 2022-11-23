@@ -12,7 +12,7 @@ import CelebDetails from './components/CelebDetails';
 import CreateMovie from './components/CreateMovie';
 
 
-function App() {
+function App(props) {
 
 
   const [movies, setMovies] = useState([]);
@@ -44,7 +44,7 @@ function App() {
         <Route path="/movies/create" element={<CreateMovie />} />
         <Route path="/movies/:id" element={<MovieDetails movies={movies} fetchMovies={fetchMovies}/>} />
         <Route path="/celebrities" element={<CelebList /> } />
-        <Route path="/celebrities/:id" element={<CelebDetails />} />
+        <Route path="/celebrities/:id" element={<CelebDetails celebs={props.celebs} fetchCelebs={props.fetchCelebs}/>} />
       </Routes>
     </div>
   );

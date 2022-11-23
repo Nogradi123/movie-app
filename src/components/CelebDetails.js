@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import {useState, useEffect} from 'react';
+import EditCeleb from './EditCeleb';
 
 
 export default function CelebDetails() {
@@ -26,10 +27,15 @@ export default function CelebDetails() {
     }, [])
 
         return(
-            <div key={theCeleb._id}>
-                <h3>{theCeleb.occupation}</h3>
-                <h3>{theCeleb.catchPhrase}</h3>
+            <div>
+                <div key={theCeleb._id}>
+                    <h3>{theCeleb.occupation}</h3>
+                    <h3>{theCeleb.catchPhrase}</h3>
+                </div>
+
+                {/* {<EditCeleb />} */}
             </div>
+
         )
 
 

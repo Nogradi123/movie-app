@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignupOrLogin({action, getUserInfo}) {
+    const navigate = useNavigate();
 
     const [formState, setFormState] = useState({
         username: "",
@@ -27,6 +29,7 @@ export default function SignupOrLogin({action, getUserInfo}) {
         )
         .then((response)=>{
             getUserInfo();
+            navigate('/')
         })
         .catch((err)=>{
             console.log(err);

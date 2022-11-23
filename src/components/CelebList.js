@@ -26,6 +26,17 @@ export default function CelebList() {
         fetchCelebrities();
     }, [])
 
+    const deleteCeleb = (theID) =>{
+        console.log(theID);
+        axios.post("http://localhost:4200/celebrities/remove", {id:theID})
+        .then((response)=>{
+            console.log(response);
+            fetchCelebrities();
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+       }
 
     const listOfCelebs = celebs.map((eachCeleb)=>{
         return(
@@ -33,7 +44,7 @@ export default function CelebList() {
                 <Link to={"/celebrities/"+eachCeleb._id}>
                     <h3>{eachCeleb.name}</h3>
                 </Link>
-                
+                <button onClick={() => {deleteCeleb(eachCeleb._id)}}>Delete</button>
             </div>
 
         )

@@ -42,11 +42,8 @@ export default function Home() {
         <SignupOrLogin action="login" getUserInfo={getUserInfo} />
       </div>}
 
-      {theUser && 
-        <div>
-          <button onClick={logout}
-          >Logout</button>
-      </div>}
+      {theUser && <button onClick={logout}>Logout</button>}
+        
       
     </div>
   )

@@ -10,8 +10,7 @@ export default function CreateMovie() {
         title: "",
         genre: "",
         plot: "",
-        cast: ""
-
+       
     })
 
     const updateInput = (e, thingToUpdate)=>{
@@ -19,12 +18,13 @@ export default function CreateMovie() {
     }
 
     const submitForm = () =>{
+        console.log(formState);
         axios.post("http://localhost:4200/movies/create", {
             title: formState.title,
             genre: formState.genre,
             plot: formState.plot,
-            cast: formState.cast,
-        
+            
+
         })
         .then((response)=>{
             console.log(response);
@@ -49,10 +49,10 @@ export default function CreateMovie() {
                 Plot:
                 <input type="text" value={formState.plot} onChange={(e)=>{updateInput(e,"plot")}} />
             </div>
-            <div>
+            {/* <div>
                 Cast:
                 <input type="text" value={formState.cast} onChange={(e)=>{updateInput(e,"cast")}} />
-            </div>
+            </div> */}
     
             <button onClick={submitForm}>submit</button>
         </div>
